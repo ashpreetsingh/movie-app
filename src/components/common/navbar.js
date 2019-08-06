@@ -79,11 +79,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function SearchAppBar(props) {
   const classes = useStyles();
-  let buttonClick=false;
-  const handleClick=()=>{
-    buttonClick=true;
-  }
+ 
   const [open, setOpen] = React.useState(false);
+  const [openSignUp,setSignUp] = React.useState(false);
+  let credentials ={
+    id :"",
+    date:"",
+    number:"",
+    password:""
+  }
   let [id,password]=React.useState("")
 
   function handleClickOpen() {
@@ -94,13 +98,29 @@ export default function SearchAppBar(props) {
     setOpen(false);
 
   }
-  function handleEmail(e){
+  function setEmail(e){
     
-      Fire.database().ref('users/').set({
+      credentials.id = e.target.value
+    
+  }
+  function setNumber(e){
+    credentials.number=e.target.value
+  }
+  function setDate(e){
+    credentials.date=e.target.value
+  }
+  function setPass(e){
+    credentials.password=e.target.value
+  }
+  function handleClickSignUp(){
+    setSignUp(true);
+  }
+  function handleCloseSignUp(){
+    Fire.database().ref('users/').set({
         
-        id:e.target.value
-      });
-    
+      credentials
+    });
+    setSignUp(false);
   }
   return (
     <div className={classes.root}>
@@ -111,34 +131,49 @@ export default function SearchAppBar(props) {
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="/" style={{textDecoration:'none',color:'black'}}>BookMyMovie</Link>
           </Typography>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'Search' }}
-            />
-          </div> */}
+         
           
           <ButtonGroup  color="secondary" size="small" variant="contained">
             <Button onClick={handleClickOpen}>Login</Button>
-            <Button>Sign Up</Button>
+            <Button onClick={handleClickSignUp}>Sign Up</Button>
             </ButtonGroup> 
             <Dialog open={open} onClose={handleClose}>
                 <DialogContent>
                     <DialogContentText>
                         Login
                     </DialogContentText>
-                    <TextField autoFocus label="Email Address" type="email" onChange={handleEmail} />
+                    <TextField autoFocus label="Email Address" type="email"  />
                     <TextField label="Password" type="password" />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Login</Button>
+                </DialogActions>
+                </Dialog>
+            <Dialog open={openSignUp} onClose={handleCloseSignUp}>
+                <DialogContent>
+                    <DialogContentText>
+                        Sign Up
+                    </DialogContentText>
+
+                    <TextField autoFocus label="Email Address" type="email" onChange={setEmail} />
+                    <TextField label="Mobile Number" type="number" onChange={setNumber} />
+                    <div style={{marginTop:'5%'}} />
+                    <TextField
+        id="date"
+        label="Date of Birth"
+        type="date"
+        defaultValue="2001-01-01"
+        className={classes.textField}
+        // InputLabelProps={{
+        //   shrink: true,
+        // }}
+        onChange={setDate}
+      />
+                    <TextField label="Password" type="password" onChange={setPass} />
+                    
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseSignUp}>Sign Up</Button>
                 </DialogActions>
                 </Dialog>
         </Toolbar>
