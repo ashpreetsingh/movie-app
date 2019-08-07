@@ -18,6 +18,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Fire from "../fire"
+import { statement } from '@babel/template';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -89,6 +90,7 @@ export default function SearchAppBar(props) {
     password:""
   }
   let [id,password]=React.useState("")
+  let userDetails=[];
 
   function handleClickOpen() {
     setOpen(true);
@@ -96,7 +98,14 @@ export default function SearchAppBar(props) {
 
   function handleClose() {
     setOpen(false);
-
+    let userKey="";
+    Fire.database().ref('users/').on('value',(data)=>{
+      let users=data.val();
+      for(userKey in users){
+        let user=users[userKey]
+       
+      }
+    })
   }
   function setEmail(e){
     
@@ -110,17 +119,22 @@ export default function SearchAppBar(props) {
     credentials.date=e.target.value
   }
   function setPass(e){
-    credentials.password=e.target.value
+    password(e.target.value);
+    
   }
   function handleClickSignUp(){
     setSignUp(true);
   }
   function handleCloseSignUp(){
-    Fire.database().ref('users/').set({
+    
+    Fire.database().ref('users/').push({
         
       credentials
     });
     setSignUp(false);
+  }
+  function auth(){
+    
   }
   return (
     <div className={classes.root}>
@@ -142,8 +156,8 @@ export default function SearchAppBar(props) {
                     <DialogContentText>
                         Login
                     </DialogContentText>
-                    <TextField autoFocus label="Email Address" type="email"  />
-                    <TextField label="Password" type="password" />
+                    <TextField autoFocus label="Email Address" type="email" onChange={setEmail} />
+                    <TextField label="Password" type="password" onChange={setPass}/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Login</Button>
