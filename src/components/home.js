@@ -4,23 +4,17 @@ import Grid from "@material-ui/core/Grid"
 import Card from "./movieComponent"
 import Data from "../content/index.js"
 import Fade from "@material-ui/core/Fade"
+
 class Home extends Component {
     constructor(props){
         super(props);
       this.state={
-          hover:false,
-          clicked:true
+          
       }
     }
-    handleHover=()=>{
-        this.setState({
-            hover:!this.state.hover
-        })
-    }
+    
     handleClick=(i)=>{
-        this.setState({
-            clicked:!this.state.clicked
-        })
+        
 
         this.props.history.push(`/description/${i}`)
     }
@@ -29,8 +23,9 @@ class Home extends Component {
         <Fragment>
             
             <Nav />
-            <Fade in={this.state.clicked} timeout={{enter:500, exit:500}}>
-            <Grid container justify="center" alignItems="center" style={{backgroundColor:'black'}} >
+         
+            <Fade in={true} timeout={{enter:500, exit:500}}>
+            <Grid container justify="center" alignItems="center" style={{backgroundColor:'#080808'}} >
                 
                     {
                         Data.movie.map((data)=>
@@ -42,8 +37,11 @@ class Home extends Component {
                         )})
                     }
                 </Grid>
+                
                 </Fade>
-           
+                
+        
+               
          
         </Fragment>
         ) 

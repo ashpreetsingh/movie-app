@@ -18,7 +18,14 @@ const useStyles = makeStyles({
   card: {
     minWidth: 275,
     height:'510px',
-    cursor:'pointer'
+    cursor:'pointer',
+    borderRadius:"0",
+    transition: 'transform 0.2s',
+    // transitionTimingFunction:'ease',
+    '&:hover' :{
+      transform:'scale(1.02,1.02)'
+    },
+    
     
   },
   bullet: {
@@ -49,7 +56,7 @@ function SimpleCard(props) {
     props.handleClick(props.data.id)
   }
   return (
-    <Card className={classes.card} onClick={handleClick} >
+    <Card className={classes.card} onClick={handleClick} raised={true}>
       {/* <Fade in={props.hover}> */}
       <CardContent >
         <img src={props.data.bg} width='100%' height='350px'></img>
