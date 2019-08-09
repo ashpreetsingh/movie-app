@@ -18,7 +18,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Fire from "../fire"
-import { statement } from '@babel/template';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faFilm} from "@fortawesome/free-solid-svg-icons"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -73,8 +74,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   navbarStyle:{
-    backgroundColor:"white",
-    color:"black"
+    backgroundColor:"#1b1b1b",
+    color:"white"
   }
 }));
 
@@ -143,7 +144,8 @@ export default function SearchAppBar(props) {
           
           
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/" style={{textDecoration:'none',color:'black'}}>BookMyMovie</Link>
+            <FontAwesomeIcon icon={faFilm} style={{marginRight:"8px"}}/>
+            <Link to="/" style={{textDecoration:'none',color:'white'}}>BookMyMovie</Link>
           </Typography>
          
           
