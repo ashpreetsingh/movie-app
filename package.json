@@ -16,6 +16,7 @@
     "react-live-clock": "^3.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-seat-charts": "^0.1.14",
     "react-seatmap": "^0.1.2",
     "react-star-rating-component": "^1.4.1",
     "react-star-ratings": "^2.3.0"

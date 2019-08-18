@@ -27,6 +27,10 @@ class Description extends Component{
             description:filteredArray[0]
         })
     }
+
+    handleClick=(i)=>{
+        this.props.history.push(`/booking/${i}`);
+    }
     render(){
 
         return(
@@ -41,7 +45,7 @@ class Description extends Component{
                 </Fade>
                 <Zoom in={this.state.fade} timeout={{enter:1200}}>
                 <Grid container justify="center" style={{marginTop:"-40%"}}>
-                <DescriptionCard data={this.state.description} />
+                <DescriptionCard data={this.state.description} handleClick={this.handleClick} />
                 
                 </Grid>
                 </Zoom>

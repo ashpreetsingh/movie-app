@@ -14,8 +14,6 @@ class Home extends Component {
     }
     
     handleClick=(i)=>{
-        
-
         this.props.history.push(`/description/${i}`)
     }
     render(){

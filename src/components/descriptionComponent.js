@@ -3,8 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from "./common/button"
-import StarRatingComponent from "react-star-rating-component"
-import StarRatings from "react-star-ratings"
+import StarRatingComponent from "react-star-rating-component";
+import StarRatings from "react-star-ratings";
+import {Link} from 'react-router-dom';
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
@@ -14,7 +16,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function PaperSheet(props) {
   const classes = useStyles();
-
+  function handleClick(){
+    props.handleClick(props.data.id);
+  }
   return (
     <div>
       <Paper className={classes.root} elevation={10} style={{textAlign:"center"}}>
@@ -28,9 +32,8 @@ export default function PaperSheet(props) {
         {/* <StarRatingComponent value={props.data.rating} /> */}
         <StarRatings rating={props.data.rating} starDimension='20px' starSpacing='4px' starRatedColor='rgb(250,236,42)'/>
         <Typography>
-        <Button label="Book Now!" />
+        <Button label="Book Now!" handleClick={handleClick} />
         </Typography>
-        
       </Paper>
     </div>
   );
