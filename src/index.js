@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import Home from "./components/home";
 import Description from "./components/movieDescription";
 import Booking from "./components/Booking";
-import SeatMap from "./components/seatInterface"
+
 import {BrowserRouter, Route} from "react-router-dom"
 import SignUp from "./components/common/signup"
 const app=(
@@ -16,7 +16,7 @@ const app=(
             <Route exact path="/" component={Home} />
             <Route exact path="/description/:id" component={Description} />
             <Route exact path="/booking" component={Booking} />
-            <Route exact path="/seats" component={SeatMap} />
+         
             <Route exact path="/signup" component={SignUp} />
         </div>
     </BrowserRouter>
