@@ -4,6 +4,8 @@ import Grid from "@material-ui/core/Grid"
 import Card from "./movieComponent"
 import Data from "../content/index.js"
 import Fade from "@material-ui/core/Fade"
+import Carousel from "./carousel"
+import bg from "../content/images/web-bg.jpg"
 
 class Home extends Component {
     constructor(props){
@@ -20,22 +22,34 @@ class Home extends Component {
     }
     render(){
         return(
-        <Fragment>
+        <div style={{background:`url(${bg})`}}>
             
             <Nav />
-         
+           <Grid container justify="center" alignItems="center"  >
+               <Carousel />
+        </Grid>
+        <Grid container justify="center" alignItems="center"  >
+               <h2 style={{color:"white"}}>Latest picks<hr/></h2>
+        </Grid>
             <Fade in={true} timeout={{enter:500, exit:500}}>
-            <Grid container justify="center" alignItems="center" style={{backgroundColor:'#080808'}} >
+                
+            <Grid container justify="center" alignItems="center"  >
+            
+            
+
+            
+            
                 
                     {
                         Data.movie.map((data)=>
                         {return(
-                            <Grid item md={5} style={{margin:'1%'}} onMouseEnter={this.handleHover} onMouseOut={this.handleHover}>
+                            <Grid item md={3} style={{margin:'1%'}} >
 
-                                <Card data={data} hover={this.state.hover} handleClick={this.handleClick}  />
+                                <Card data={data} handleClick={this.handleClick}  />
                             </Grid>
                         )})
                     }
+                   
                 </Grid>
                 
                 </Fade>
@@ -43,7 +57,7 @@ class Home extends Component {
         
                
          
-        </Fragment>
+        </div>
         ) 
 }
     

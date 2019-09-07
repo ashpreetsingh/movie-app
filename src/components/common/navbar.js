@@ -9,14 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import {Link} from "react-router-dom"
 import Button from "@material-ui/core/Button"
-import DialogBox from "./dialogBox"
 import ButtonGroup from "@material-ui/core/ButtonGroup"
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Fire from "../fire"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faFilm} from "@fortawesome/free-solid-svg-icons"
@@ -83,57 +76,7 @@ export default function SearchAppBar(props) {
   const classes = useStyles();
  
   const [open, setOpen] = React.useState(false);
-  const [openSignUp,setSignUp] = React.useState(false);
-  let credentials ={
-    id :"",
-    date:"",
-    number:"",
-    password:""
-  }
-  let [id,password]=React.useState("")
-  let userDetails=[];
-
-  function handleClickOpen() {
-    setOpen(true);
-  }
-
-  function handleClose() {
-    setOpen(false);
-    let userKey="";
-    Fire.database().ref('users/').on('value',(data)=>{
-      let users=data.val();
-      for(userKey in users){
-        let user=users[userKey]
-       
-      }
-    })
-  }
-  function setEmail(e){
-    
-      credentials.id = e.target.value
-    
-  }
-  function setNumber(e){
-    credentials.number=e.target.value
-  }
-  function setDate(e){
-    credentials.date=e.target.value
-  }
-  function setPass(e){
-    password(e.target.value);
-    
-  }
-  function handleClickSignUp(){
-    setSignUp(true);
-  }
-  function handleCloseSignUp(){
-    
-    Fire.database().ref('users/').push({
-        
-      credentials
-    });
-    setSignUp(false);
-  }
+  
   function auth(){
     
   }
@@ -150,48 +93,10 @@ export default function SearchAppBar(props) {
          
           
           <ButtonGroup  color="secondary" size="small" variant="contained">
-            <Button onClick={handleClickOpen}>Login</Button>
-            <Button onClick={handleClickSignUp}>Sign Up</Button>
+            <Button >Login</Button>
+            <Button >Sign Up</Button>
             </ButtonGroup> 
-            <Dialog open={open} onClose={handleClose}>
-                <DialogContent>
-                    <DialogContentText>
-                        Login
-                    </DialogContentText>
-                    <TextField autoFocus label="Email Address" type="email" onChange={setEmail} />
-                    <TextField label="Password" type="password" onChange={setPass}/>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Login</Button>
-                </DialogActions>
-                </Dialog>
-            <Dialog open={openSignUp} onClose={handleCloseSignUp}>
-                <DialogContent>
-                    <DialogContentText>
-                        Sign Up
-                    </DialogContentText>
-
-                    <TextField autoFocus label="Email Address" type="email" onChange={setEmail} />
-                    <TextField label="Mobile Number" type="number" onChange={setNumber} />
-                    <div style={{marginTop:'5%'}} />
-                    <TextField
-        id="date"
-        label="Date of Birth"
-        type="date"
-        defaultValue="2001-01-01"
-        className={classes.textField}
-        // InputLabelProps={{
-        //   shrink: true,
-        // }}
-        onChange={setDate}
-      />
-                    <TextField label="Password" type="password" onChange={setPass} />
-                    
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseSignUp}>Sign Up</Button>
-                </DialogActions>
-                </Dialog>
+           
         </Toolbar>
       </AppBar>
     </div>

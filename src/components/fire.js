@@ -1,15 +1,16 @@
-import firebase from "firebase"
+import * as firebase from "firebase/app"
+import "firebase/auth"
 
-  // Your web app's Firebase configuration
-  const fire = {
-    apiKey: "AIzaSyC0jpNiWHe0EWF4SxQ4pAQKaVzu1QocRts",
-    authDomain: "react-chat-app-b3aee.firebaseapp.com",
-    databaseURL: "https://react-chat-app-b3aee.firebaseio.com",
-    projectId: "react-chat-app-b3aee",
-    storageBucket: "",
-    messagingSenderId: "880129231009",
-    appId: "1:880129231009:web:fe672d9c58d332eb"
-  };
-  // Initialize Firebase
-  const config=firebase.initializeApp(fire);
-  export default config
+var firebaseConfig = {
+  apiKey: "AIzaSyB_lyFv18VMBfMZjZv--tYR5HVqX4CN2hI",
+  authDomain: "movie-app-bf37c.firebaseapp.com",
+  databaseURL: "https://movie-app-bf37c.firebaseio.com",
+  projectId: "movie-app-bf37c",
+  storageBucket: "",
+  messagingSenderId: "448238166025",
+  appId: "1:448238166025:web:932f4036890754ed"
+};
+// Initialize Firebase
+var fire=firebase.initializeApp(firebaseConfig);
+console.log(fire);
+export default fire

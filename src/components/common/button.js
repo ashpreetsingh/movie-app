@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 export default function ContainedButtons(props) {
   const classes = useStyles();
  function handleClick(){
-    // props.handleClick(props.label)
+    props.handleClick()
 }
   return (
     <div>

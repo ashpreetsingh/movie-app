@@ -14,7 +14,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function PaperSheet(props) {
   const classes = useStyles();
-
+function handleClick(){
+  
+}
   return (
     <div>
       <Paper className={classes.root} elevation={10} style={{textAlign:"center"}}>
@@ -28,7 +30,7 @@ export default function PaperSheet(props) {
         {/* <StarRatingComponent value={props.data.rating} /> */}
         <StarRatings rating={props.data.rating} starDimension='20px' starSpacing='4px' starRatedColor='rgb(250,236,42)'/>
         <Typography>
-        <Button label="Book Now!" />
+        <Button label="Book Now!" handleClick={handleClick} />
         </Typography>
         
       </Paper>

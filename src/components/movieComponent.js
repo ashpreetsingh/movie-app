@@ -16,8 +16,8 @@ const returnprops=(props)=>{
 let x=returnprops();
 const useStyles = makeStyles({
   card: {
-    minWidth: 275,
-    height:'510px',
+    
+    
     cursor:'pointer',
     borderRadius:"0",
     transition: 'transform 0.2s',
@@ -59,7 +59,7 @@ function SimpleCard(props) {
     <Card className={classes.card} onClick={handleClick} raised={true}>
       {/* <Fade in={props.hover}> */}
       <CardContent >
-        <img src={props.data.bg} width='100%' height='350px'></img>
+        <img src={props.data.poster} width='100%' height='375px'></img>
      
         <Typography variant="h5" component="h2" style={{marginTop:'2%'}}>
          {props.data.name}

@@ -27,21 +27,21 @@ class Description extends Component{
             description:filteredArray[0]
         })
     }
+    
     render(){
-
         return(
             <Fragment>
                 <Nav />
                 <Fade in={this.state.fade} timeout={{enter:1200}}>
+                    <img src={this.state.description.bg} width='100%' id="bgImage" />
                     
-                    <img src={this.state.description.bg} width='100%' ></img>
                
                     
                
                 </Fade>
                 <Zoom in={this.state.fade} timeout={{enter:1200}}>
                 <Grid container justify="center" style={{marginTop:"-40%"}}>
-                <DescriptionCard data={this.state.description} />
+                <DescriptionCard data={this.state.description}  />
                 
                 </Grid>
                 </Zoom>
