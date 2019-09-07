@@ -1,6 +1,5 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect} from "react";
 import Container from "@material-ui/core/Container";
-import Movietrailer from './movietrailer';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -8,6 +7,8 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Cinemadetail from './cinemadetail';
+import Seatinterface from './seat/seatInterface';
+import Data from "../content/index.js"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,15 +32,24 @@ function getStepContent(stepIndex) {
     case 0:
       return <Cinemadetail/>;
     case 1:
-      return 'Choose your preffered seats';
+      return <Seatinterface/>;
     case 2:
-      return 'Payment';
+      return 'Payment Gateway';
     default:
       return 'Uknown stepIndex';
   }
 }
 
-function Booking() {
+function Booking(props) {
+  console.log(props)
+    useEffect(() => {
+    let id=props.match.params.id;
+    let filteredArray=Data.movie.filter((data,key)=>{
+        return data.id===id
+    })
+    console.log(filteredArray[0].trailer);
+  });
+
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -59,8 +69,17 @@ function Booking() {
   return (
     <Fragment>
       <Container maxWidth="lg">
-        <Movietrailer/>
+                <iframe
+                    src={trailer}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                    width="100%"
+                    height="350vh"
+                    />
       </Container>
+      <h1>FF9</h1>
       <Container maxWidth="md">
       <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel>
