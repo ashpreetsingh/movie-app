@@ -16,15 +16,25 @@ const useStyles = makeStyles(theme => ({
 
 export default function PaperSheet(props) {
   const classes = useStyles();
-  function handleClick(){
-    props.handleClick(props.data.id);
-  }
+  const handleClick=()=>
+    props.handleClick(props.data.id,props.data.name)
+  
   return (
     <div>
       <Paper className={classes.root} elevation={10} style={{textAlign:"center"}}>
         <Typography variant="h4" component="h3">
           {props.data.name}
         </Typography>
+        <iframe
+                    src={props.data.trailer}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                    width="100%"
+                    height="350px"
+                    style={{marginTop:"2%", marginBottom:"2%"}}
+                    />
         <Typography component="p">
           {props.data.description}
         

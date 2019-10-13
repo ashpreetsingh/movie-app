@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,9 +10,23 @@ import SearchIcon from '@material-ui/icons/Search';
 import {Link} from "react-router-dom"
 import Button from "@material-ui/core/Button"
 import ButtonGroup from "@material-ui/core/ButtonGroup"
-import Fire from "../fire"
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faFilm} from "@fortawesome/free-solid-svg-icons"
+import google from "./google.png"
+import Fire from "../fire"
+import firebase from "firebase"
+
+
+
+var provider = new firebase.auth.GoogleAuthProvider();
+
+var user = firebase.auth().currentUser;
+
+
+
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -67,35 +81,93 @@ const useStyles = makeStyles(theme => ({
     },
   },
   navbarStyle:{
-    backgroundColor:"#1b1b1b",
-    color:"white"
+    background:"transparent",
+    color:"white",
+    boxShadow:"none"
   }
 }));
 
 export default function SearchAppBar(props) {
-  const classes = useStyles();
- 
-  const [open, setOpen] = React.useState(false);
+  var name=""
   
-  function auth(){
-    
+  
+
+  const [auth,setAuth]=useState(false);
+  const [user,setUser]=useState("");  
+  const classes = useStyles();
+  firebase.auth().onAuthStateChanged((user)=> {
+    if(user){
+      setAuth(true);
+      setUser(user);
+    }
+    else{
+      setAuth(false)
+    }
+   
+   });
+ 
+  function render(){
+    console.log("Render")
+    var button;
+    if(auth){
+      button=<Fragment><h4 style={{marginRight:"2%"}}>{user.displayName}</h4>
+      <Button variant="contained" style={{textTransform:"none"}} onClick={handleClickLogout}>Sign Out</Button>
+      </Fragment>
+    }
+    else{
+    button=<Button variant="contained" style={{textTransform:"none"}} onClick={handleClick}><img src={google} 
+    width="20px" height="20px" style={{marginRight:"10px"}}  />Sign in with Google</Button>
+    }
+    return button
   }
+  const handleClickLogout=()=>{
+    window.location.reload();
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
+  const handleClick=()=>{
+    console.log("clicked")
+    
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    }
+   
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbarStyle}>
         <Toolbar>
           
           
+
           <Typography className={classes.title} variant="h6" noWrap>
             <FontAwesomeIcon icon={faFilm} style={{marginRight:"8px"}}/>
             <Link to="/" style={{textDecoration:'none',color:'white'}}>BookMyMovie</Link>
           </Typography>
          
           
-          <ButtonGroup  color="secondary" size="small" variant="contained">
-            <Button >Login</Button>
-            <Button >Sign Up</Button>
-            </ButtonGroup> 
+          {render()}
+          
+            {/* <Button variant="contained" style={{textTransform:"none"}} onClick={handleClick}><img src={google} 
+             width="20px" height="20px" style={{marginRight:"10px"}}  />Sign in with Google</Button> */}
+            
+         
            
         </Toolbar>
       </AppBar>

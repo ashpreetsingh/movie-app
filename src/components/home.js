@@ -23,7 +23,7 @@ class Home extends Component {
         <div style={{background:`url(${bg})`}}>
             
             <Nav />
-           <Grid container justify="center" alignItems="center"  >
+           <Grid container justify="center" alignItems="center" style={{marginTop:"2%"}}  >
                <Carousel />
         </Grid>
         <Grid container justify="center" alignItems="center"  >

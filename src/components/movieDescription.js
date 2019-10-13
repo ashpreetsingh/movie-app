@@ -15,7 +15,8 @@ class Description extends Component{
         super(props);
         this.state={
             description:{},
-            fade:true
+            fade:true,
+            render:false
         }
     }
     componentDidMount(){
@@ -24,14 +25,22 @@ class Description extends Component{
             return data.id===id
         })
         this.setState({
-            description:filteredArray[0]
+            description:filteredArray[0],
+            
         })
+        console.log(this.props.match)
+        
+    }
+    handleClick=(i,name)=>{
+        this.props.history.push(`/booking/${i}/${name}`)
+
     }
     
     render(){
+       
         return(
-            <Fragment>
-                <Nav />
+            <div style={{backgroundColor:"black", height:"100vh"}}>
+                <Nav  />
                 <Fade in={this.state.fade} timeout={{enter:1200}}>
                     <img src={this.state.description.bg} width='100%' id="bgImage" />
                     
@@ -40,14 +49,15 @@ class Description extends Component{
                
                 </Fade>
                 <Zoom in={this.state.fade} timeout={{enter:1200}}>
-                <Grid container justify="center" style={{marginTop:"-40%"}}>
-                <DescriptionCard data={this.state.description}  />
+                <Grid container justify="center" style={{marginTop:"-45%"}}>
+                <DescriptionCard data={this.state.description} handleClick={this.handleClick} />
                 
                 </Grid>
                 </Zoom>
                  
-            </Fragment>
+            </div>
         )
+        
     }
     
 }

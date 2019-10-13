@@ -1,15 +1,15 @@
 import img1 from "./images/spidey.jpg"
 import img2 from "./images/lionking.jpg"
-import img3 from "./images/super30.jpg"
+import img3 from "./images/onceupon.jpg"
 import img4 from "./images/kabirsingh.jpg"
 import img5 from "./images/article15.jpg"
-import img6 from "./images/shadaa.jpg"
+import img6 from "./images/hobbsnshaw.jpg"
 import pos1 from "./images/posters/spiderman.jpg"
 import pos2 from "./images/posters/lionking.jpg"
-import pos3 from "./images/posters/super30.jpg"
+import pos3 from "./images/posters/onceupon.jpg"
 import pos4 from "./images/posters/kabirsingh.jpg"
 import pos5 from "./images/posters/article15.jpg"
-import pos6 from "./images/posters/shadaa.jpg"
+import pos6 from "./images/posters/hobbsnshaw.jpg"
 const content= {
     movie : [
         {   id:"bmmv1",
@@ -36,16 +36,15 @@ const content= {
             trailer:"https://www.youtube.com/embed/7TavVZMewpY"
         },
         {   id:"bmmv3",
-            name : 'Super 30',
-            language : 'Hindi',
-            genre :'Biography',
-            certificate : 'U',
+            name : 'Once Upon a Time in Hollywood',
+            language : 'English',
+            genre :'Comedy/Drama',
+            certificate : 'A',
             bg:img3,
-            description:"Based on life of Patna-based mathematician Anand Kumar who runs the famed Super 30 program for IIT aspirants in Patna.",
-            rating:4,
+            description:"A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+            rating:4.5,
             poster:pos3,
-
-            trailer:"https://www.youtube.com/embed/QpvEWVVnICE"
+            trailer:"https://www.youtube.com/embed/ELeMaP8EPAA"
         },
         {   id:"bmmv4",
             name : 'Kabir Singh',
@@ -70,15 +69,15 @@ const content= {
             trailer:"https://www.youtube.com/embed/HKOJY0cU63E"
         },
         {   id:"bmmv6",
-            name : 'Shadaa',
-            language : 'Punjabi',
-            genre :'Drama',
-            certificate : 'U',
+            name : 'Hobbs & Shaw',
+            language : 'English',
+            genre :'Action/Adventure',
+            certificate : 'U/A',
             bg:img6,
-            description:"Amidst pressures from his parents to hurry up and wed, a young man seeks his perfect match. After many failed attempts with matchmakers, his parents are delighted when their son finally meets the woman of his dreams but things do not go as planned.",
-            rating:2.5,
+            description:"Lawman Luke Hobbs and outcast Deckard Shaw form an unlikely alliance when a cyber-genetically enhanced villain threatens the future of humanity.",
+            rating:3,
             poster:pos6,
-            trailer:"https://www.youtube.com/embed/Mm72_t5BUBs"
+            trailer:"https://www.youtube.com/embed/HZ7PAyCDwEg"
         },
     ]
 }

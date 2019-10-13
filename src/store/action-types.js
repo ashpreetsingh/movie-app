@@ -1,0 +1,1 @@
+export const SET_CINEMA="SET_CINEMA"

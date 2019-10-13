@@ -10,16 +10,23 @@ import Booking from "./components/Booking";
 
 import {BrowserRouter, Route} from "react-router-dom"
 import SignUp from "./components/common/signup"
+import Ticket from "./components/ticket"
+import {createStore} from "redux"
+import {Provider} from "react-redux"
+import reducer from "./store/reducer"
+const store=createStore(reducer);
 const app=(
+    <Provider store={store}>
     <BrowserRouter>
         <div>
             <Route exact path="/" component={Home} />
             <Route exact path="/description/:id" component={Description} />
-            <Route exact path="/booking" component={Booking} />
-         
+            <Route exact path="/booking/:cid/:name" component={Booking} />
+            <Route exact path="/ticket" component={Ticket} />
             <Route exact path="/signup" component={SignUp} />
         </div>
     </BrowserRouter>
+    </Provider>
 )
 
 ReactDOM.render(app, document.getElementById('root'));
